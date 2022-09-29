@@ -1,0 +1,75 @@
+
+version: 2
+
+sources:
+    - name: dbt_fnafa
+      tags: ["Source"]
+      description: "Source Table"
+      database: feisty-outlet-362916
+      tables:
+          - name: green_tripdata_full
+            description: "Green taxi trip historical data"
+            columns:
+                 - name: tripID
+                   description: "The primary key for this table"
+                   tests:
+                        - unique
+                        - not_null  
+
+
+models:
+    - name: green_tripdata_full
+      tags: ["Source"]
+      description: "This model was created for being a Source Table"
+      columns:
+          - name: tripID
+            description: "Code defining the trip code"
+            tests:
+                - unique
+                - not_null
+          - name: vendorID
+            description: "A code indicating the LPEP provider that provided the record"
+            tests:
+                - not_null
+          - name: RatecodeID
+            description: "A code indicating the LPEP provider that provided the record"
+            tests:
+                - not_null
+          - name: PULocationID
+            description: "TLC Taxi Zone in which the taximeter was engaged"
+            tests:
+                - not_null
+          - name: DOLocationID
+            description: "TLC Taxi Zone in which the taximeter was disengaged"
+            tests:
+                - not_null
+
+
+
+    - name: green_tripdata_facts
+      tags: ["Facts"]
+      description: "Facts table for green taxi trip historical data"
+      columns:
+          - name: tripID
+            description: "Code defining the trip code"
+            tests:
+                - unique
+                - not_null
+          - name: vendorID
+            description: "A code indicating the LPEP provider that provided the record"
+            tests:
+                - not_null
+          - name: RatecodeID
+            description: "A code indicating the LPEP provider that provided the record"
+            tests:
+                - not_null
+          - name: PULocationID
+            description: "TLC Taxi Zone in which the taximeter was engaged"
+            tests:
+                - not_null
+          - name: DOLocationID
+            description: "TLC Taxi Zone in which the taximeter was disengaged"
+            tests:
+                - not_null
+
+    
